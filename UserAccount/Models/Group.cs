@@ -8,8 +8,25 @@ namespace UserAccount.Models
 {
     internal class Group
     {
-        public string GroupNo;
+        private string _groupno;
         public int StdLimit;
+        public string GroupNo 
+        { 
+            get
+            {
+                return _groupno;
+            } 
+            set 
+            {
+                if (CheckGroupNo(value)==true)
+                {
+                    _groupno = value;
+                    Console.WriteLine($"Your GroupNo: {GroupNo}");
+                    return;
+                }
+                
+            } 
+        }
         public Group(string groupno,int stdlimit)
         {
             GroupNo=groupno;
@@ -17,6 +34,10 @@ namespace UserAccount.Models
         }
 
         Student [] Students = new Student[0];
+        public void AddStudent(Student std)
+        {
+            Students[0] = std;
+        }
 
         public bool CheckGroupNo(string groupNo)
         {
