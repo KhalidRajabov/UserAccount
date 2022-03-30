@@ -25,6 +25,8 @@ namespace UserAccount.Models
                 {
                     _password = value;
                     _id++;
+
+
                     ShowInfo();
 
                     return;
