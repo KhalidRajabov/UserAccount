@@ -36,9 +36,9 @@ namespace UserAccount.Models
                 Console.WriteLine("Password is wrong. Correct form: More than 8, 1 uppercase, 1 lowercase, 1 number");
                 return;
 
-            } }
+            } 
+        }
 
-        /*public readonly int id=0;*/
 
         public User()
         {
@@ -83,9 +83,12 @@ namespace UserAccount.Models
 
         public void ShowInfo()
         {
-            Console.WriteLine($"Your id is {Id} \n" +
-                $"Your full name: {FullName} \n" +
-                $"Your email: {Email}");
+            Console.WriteLine($"\n"+
+                $"User id is {Id} \n" +
+                $"User full name: {FullName} \n" +
+                $"User email: {Email} \n" +
+                $"\n" +
+                $"");
         }
     }
 

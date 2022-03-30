@@ -19,8 +19,28 @@ namespace UserAccount
                 Console.Write("Enter your password: ");
                 user.Password = Console.ReadLine();
 
+                Student student = new Student();
+                Console.Write("Write student name: ");
+                student.WholeName = Console.ReadLine();
+
+                Console.Write("Write student point: ");
+                student.Point = Convert.ToInt32(Console.ReadLine());
+
                 Console.WriteLine("Press any key to continue");
                 Console.WriteLine("Press ESC to quit the app");
+                Console.WriteLine("Press 1 to clear the screen");
+                int clear = Convert.ToInt32(Console.ReadLine());
+
+                switch (clear)
+                {
+                    case 1: 
+                        Console.Clear();
+                        break;
+                    default:
+                        break;
+                }
+
+
             } while (Console.ReadKey().Key !=ConsoleKey.Escape);
         }
     }
