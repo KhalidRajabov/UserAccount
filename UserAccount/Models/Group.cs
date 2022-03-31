@@ -9,7 +9,25 @@ namespace UserAccount.Models
     internal class Group
     {
         private string _groupno;
-        public int StdLimit;
+        private int _stdlimit;
+        public int StdLimit{
+            get
+            {
+                return _stdlimit;
+            }
+            set
+            {
+                if (value > 10 && value< 5)
+                {
+                    _stdlimit = value;
+                    return;
+                }
+                else
+                {
+                    Console.WriteLine("Min student limit 5, max student limit 10");
+                }
+            }
+        }
         public string GroupNo 
         { 
             get
@@ -32,18 +50,20 @@ namespace UserAccount.Models
             GroupNo=groupno;
             StdLimit=stdlimit;
         }
-
+        int i = 0;
         Student [] Students = new Student[0];
         public void AddStudent(Student std)
         {
-            Students[0] = std;
+            Students[i] = std;
+            i++;
+
         }
 
         public bool CheckGroupNo(string groupNo)
         {
             bool final=false;
-            bool let;
-            bool num;
+            bool let = false;
+            bool num = false;
             if (groupNo.Length==5)
             {
                 for (int i = 0; i < 2; i++)
@@ -73,13 +93,20 @@ namespace UserAccount.Models
                         break;
                     }
                 }
+                if (let == true && num == true)
+                {
+                    final = true;
+                }
+                else if (num == false || let == false)
+                {
+                    final = false;
+                }
             }
             else
             {
                 Console.WriteLine("GroupNo must have 5 characters: 2 uppercase and 3 numbers");
             }
-           
-            final=true;
+            
             return final;
 
         }
