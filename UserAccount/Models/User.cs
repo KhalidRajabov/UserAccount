@@ -20,7 +20,7 @@ namespace UserAccount.Models
              return _password;
             } 
             set
-            {
+            {   
                 if (PasswordChecker(value)==true)
                 {
                     _password = value;

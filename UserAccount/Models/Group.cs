@@ -10,55 +10,58 @@ namespace UserAccount.Models
     {
         private string _groupno;
         private int _stdlimit;
-        public int StdLimit{
+        private Student[] students;
+        public int StdLimit {
             get
             {
                 return _stdlimit;
             }
             set
             {
-                if (value > 10 && value< 5)
+                if (value > 1 && value < 18) // minimum valueni test meqsedli 1 yazmisham
                 {
                     _stdlimit = value;
                     return;
                 }
                 else
                 {
-                    Console.WriteLine("Min student limit 5, max student limit 10");
+                    Console.WriteLine("Min student limit 5, max student limit 18");
                 }
             }
         }
-        public string GroupNo 
-        { 
+        public string GroupNo
+        {
             get
             {
                 return _groupno;
-            } 
-            set 
+            }
+            set
             {
-                if (CheckGroupNo(value)==true)
+                if (CheckGroupNo(value) == true)
                 {
                     _groupno = value;
                     Console.WriteLine($"Your GroupNo: {GroupNo}");
                     return;
                 }
-                
-            } 
-        }
-        public Group(string groupno,int stdlimit)
-        {
-            GroupNo=groupno;
-            StdLimit=stdlimit;
-        }
-        int i = 0;
-        Student [] Students = new Student[0];
-        public void AddStudent(Student std)
-        {
-            Students[i] = std;
-            i++;
 
+            }
         }
+        public Group(string groupno, int stdlimit)
+        {
+            students = new Student[0];
+            GroupNo = groupno;
+            StdLimit = stdlimit;
+        }
+        public void AddStudent(Student std){
 
+            if (students.Length < StdLimit)
+            {
+                Array.Resize(ref students, students.Length + 1);
+                students[students.Length - 1] = std;
+                Console.WriteLine($"{std.WholeName} added to group: {GroupNo}.");
+                return;
+            }
+        }
         public bool CheckGroupNo(string groupNo)
         {
             bool final=false;
@@ -106,9 +109,33 @@ namespace UserAccount.Models
             {
                 Console.WriteLine("GroupNo must have 5 characters: 2 uppercase and 3 numbers");
             }
-            
             return final;
 
+        }
+
+        public void GetStudent(int? id)
+        {
+            bool exist = false;
+            foreach (Student std in students)
+            {
+                if (id == std.Ident)
+                {
+                    Console.WriteLine(std);
+                    exist = true;
+                    return;
+                }
+            }
+            if (exist == false)
+            {
+                Console.WriteLine($"{id} could not be found in {GroupNo}");
+            }
+        }
+        public void GetStudents()
+        {
+            foreach (Student std in students)
+            {
+                Console.WriteLine(std);
+            }
         }
     }
 
