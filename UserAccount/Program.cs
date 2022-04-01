@@ -116,7 +116,7 @@ namespace UserAccount
                         }
                         else
                         {
-                            Console.WriteLine("You dont registered any group yet");
+                            Console.WriteLine("There is no any student registered");
                         }
 
                         break;
